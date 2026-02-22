@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Woodwork - LocalBiz</title>
+    <link rel="stylesheet" href="style.css"><script src="auth.js" defer></script>
+    <style>
+        .profile-header {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-header">
+        <div class="container">
+            <span class="badge">Carpentry</span>
+            <h1 class="mt-4">Budget Woodwork</h1>
+            <div class="rating">★★★★☆ (4.0/5.0) - 52 Reviews</div>
+            <p class="text-muted mt-4">📍 Affordable repair and utility carpentry for home maintainance.</p>
+        </div>
+    </div>
+
+    <main class="container profile-grid">
+        <section class="details">
+            <div class="card mb-4">
+                <h2>About Us</h2>
+                <p class="mt-4">We believe that quality woodwork shouldn't break the bank. We focus on essential
+                    repairs, shelving, and utility projects that keep your home functional and organized at a fair
+                    price.</p>
+                <h3 class="mt-4">Our Services</h3>
+                <ul class="mt-4" style="padding-left: 1.5rem;">
+                    <li>Shelf Installation</li>
+                    <li>Door Frame Repair</li>
+                    <li>Floorboard Fixing</li>
+                    <li>General Utility Projects</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Customer Reviews</h2>
+                <div class="mt-4">
+                    <div class="review-card"
+                        style="border-left: 4px solid var(--primary-color); margin-bottom: 1rem; padding-left: 1rem;">
+                        <div class="rating">★★★★☆</div>
+                        <strong>Paul S.</strong>
+                        <p class="text-muted small">2 weeks ago</p>
+                        <p>Great for quick fixes and putting up shelves. Honest prices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="actions">
+            <div class="card mb-4">
+                <h3>Inquiry / Booking</h3>
+                <p class="text-muted mt-4">Small Project Rate</p>
+                <div class="price-tag">$30.00</div>
+
+                <form action="messages.html">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Get a Quote</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Contact Info</h3>
+                <p class="mt-4">📞 1-800-BUDGET-WOOD</p>
+                <p>📧 fix@budgetwoodwork.com</p>
+                <p>🕒 Mon-Sat: 8 AM - 8 PM</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

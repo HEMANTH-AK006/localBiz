@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Cuts - LocalBiz</title>
+    <link rel="stylesheet" href="style.css"><script src="auth.js" defer></script>
+    <style>
+        .profile-header {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-header">
+        <div class="container">
+            <span class="badge">Carpentry</span>
+            <h1 class="mt-4">Precision Cuts</h1>
+            <div class="rating">★★★★☆ (4.4/5.0) - 67 Reviews</div>
+            <p class="text-muted mt-4">📍 High-accuracy cabinetry and precision molding installation.</p>
+        </div>
+    </div>
+
+    <main class="container profile-grid">
+        <section class="details">
+            <div class="card mb-4">
+                <h2>About Us</h2>
+                <p class="mt-4">We specialize in the technical side of carpentry. From perfectly aligned kitchen
+                    cabinets to intricate crown molding, we ensure every cut is precise and every joint is seamless.</p>
+                <h3 class="mt-4">Our Services</h3>
+                <ul class="mt-4" style="padding-left: 1.5rem;">
+                    <li>Cabinet Installation</li>
+                    <li>Crown Molding & Trim</li>
+                    <li>Floor Joist Repair</li>
+                    <li>Technical Woodwork</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Customer Reviews</h2>
+                <div class="mt-4">
+                    <div class="review-card"
+                        style="border-left: 4px solid var(--primary-color); margin-bottom: 1rem; padding-left: 1rem;">
+                        <div class="rating">★★★★☆</div>
+                        <strong>Kevin P.</strong>
+                        <p class="text-muted small">3 weeks ago</p>
+                        <p>Very meticulous work on our kitchen cabinets. A few days late but worth it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="actions">
+            <div class="card mb-4">
+                <h3>Inquiry / Booking</h3>
+                <p class="text-muted mt-4">Standard Rate / Hour</p>
+                <div class="price-tag">$55.00</div>
+
+                <form action="messages.html">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Inquire Now</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Contact Info</h3>
+                <p class="mt-4">📞 1-800-PRECISION</p>
+                <p>📧 help@precisioncuts.com</p>
+                <p>🕒 Mon-Fri: 8 AM - 6 PM</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

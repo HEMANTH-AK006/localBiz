@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowMasters Plumbing - LocalBiz</title>
+    <link rel="stylesheet" href="style.css"><script src="auth.js" defer></script>
+    <style>
+        .profile-header {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .review-card {
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-header">
+        <div class="container">
+            <span class="badge">Plumbing</span>
+            <h1 class="mt-4">FlowMasters</h1>
+            <div class="rating">★★★★☆ (4.2/5.0) - 38 Reviews</div>
+            <p class="text-muted mt-4">📍 Masters of high-pressure cleaning and sewer line maintenance.</p>
+        </div>
+    </div>
+
+    <main class="container profile-grid">
+        <section class="details">
+            <div class="card mb-4">
+                <h2>About Us</h2>
+                <p class="mt-4">FlowMasters uses state-of-the-art hydro-jetting technology to clear the toughest clogs.
+                    We specialize in main sewer line maintenance and commercial grease trap cleaning.</p>
+                <h3 class="mt-4">Our Services</h3>
+                <ul class="mt-4" style="padding-left: 1.5rem;">
+                    <li>Hydro-Jetting</li>
+                    <li>Sewer Line Inspection (Camera)</li>
+                    <li>Grease Trap Cleaning</li>
+                    <li>Pipe Descaling</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Customer Reviews</h2>
+                <div class="mt-4">
+                    <div class="review-card">
+                        <div class="rating">★★★★★</div>
+                        <strong>Gary L.</strong>
+                        <p class="text-muted small">1 week ago</p>
+                        <p>Finally cleared the blockage that three other plumbers couldn't fix. Modern tech works!</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-outline">Write a Review</button>
+                </div>
+            </div>
+        </section>
+
+        <aside class="actions">
+            <div class="card mb-4">
+                <h3>Inquiry / Booking</h3>
+                <p class="text-muted mt-4">Starting from</p>
+                <div class="price-tag">$100.00</div>
+
+                <form action="messages.html">
+                    <div class="form-group">
+                        <label>Select Service</label>
+                        <select>
+                            <option>Sewer Inspection ($100)</option>
+                            <option>Hydro-Jetting ($250+)</option>
+                            <option>Commercial Cleanup ($400+)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Contact Info</h3>
+                <p class="mt-4">📞 1-800-FLOW-MAST</p>
+                <p>📧 service@flowmasters.com</p>
+                <p>🕒 Mon-Sat: 7 AM - 7 PM</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

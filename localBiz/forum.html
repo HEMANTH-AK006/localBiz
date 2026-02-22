@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - LocalBiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .forum-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .post-card {
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-tag {
+            background: #f1f5f9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero mt-4" style="border-radius: var(--radius); padding: 2rem;">
+            <h1>Community Discussion Forum</h1>
+            <p>Ask for recommendations, share offers, and connect with neighbors.</p>
+            <button class="btn btn-primary mt-4">New Post</button>
+        </section>
+
+        <div class="forum-list">
+            <div class="card post-card">
+                <div class="post-meta">
+                    <span class="post-tag">Recommendation</span>
+                    <span>Posted by @DaveM</span>
+                    <span>3 hours ago</span>
+                </div>
+                <h3>Looking for a reliable plumber for a kitchen sink leak</h3>
+                <p class="mt-4">Hey everyone! My kitchen sink started leaking this morning. Does anyone have a good
+                    recommendation for a plumber near Elm Street? Looking for someone affordable.</p>
+                <div class="mt-4">
+                    <button class="btn btn-outline small">Reply (5)</button>
+                    <button class="btn btn-outline small">Upvote (12)</button>
+                </div>
+            </div>
+
+            <div class="card post-card">
+                <div class="post-meta">
+                    <span class="post-tag">Offer</span>
+                    <span>Posted by @ElitePlumbing</span>
+                    <span>Yesterday</span>
+                </div>
+                <h3>Weekend Special: 20% off all drain cleaning!</h3>
+                <p class="mt-4">We're offering a special discount this weekend for our community members. Just mention
+                    'LocalBiz' when you call us!</p>
+                <div class="mt-4">
+                    <button class="btn btn-outline small">Reply (2)</button>
+                    <button class="btn btn-outline small">Upvote (8)</button>
+                </div>
+            </div>
+
+            <div class="card post-card">
+                <div class="post-meta">
+                    <span class="post-tag">Help Needed</span>
+                    <span>Posted by @SarahL</span>
+                    <span>2 days ago</span>
+                </div>
+                <h3>Advice on custom bookshelves?</h3>
+                <p class="mt-4">I want to install some custom bookshelves in my study. Has anyone worked with 'Modern
+                    Woodworks' before? How's their turnaround time?</p>
+                <div class="mt-4">
+                    <button class="btn btn-outline small">Reply (3)</button>
+                    <button class="btn btn-outline small">Upvote (4)</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Wave Plumbing - LocalBiz</title>
+    <link rel="stylesheet" href="style.css"><script src="auth.js" defer></script>
+    <style>
+        .profile-header {
+            background: white;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .review-card {
+            border-left: 4px solid var(--primary-color);
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile-header">
+        <div class="container">
+            <span class="badge">Plumbing</span>
+            <h1 class="mt-4">Blue Wave Plumbing</h1>
+            <div class="rating">★★★★★ (4.9/5.0) - 110 Reviews</div>
+            <p class="text-muted mt-4">📍 Premium bathroom remodeling and luxury fixture installs.</p>
+        </div>
+    </div>
+
+    <main class="container profile-grid">
+        <section class="details">
+            <div class="card mb-4">
+                <h2>About Us</h2>
+                <p class="mt-4">Blue Wave Plumbing specializes in the aesthetic side of plumbing. We help you design and
+                    build the bathroom of your dreams with top-tier fixtures and flawless installation.</p>
+                <h3 class="mt-4">Our Services</h3>
+                <ul class="mt-4" style="padding-left: 1.5rem;">
+                    <li>Luxury Bathroom Remodeling</li>
+                    <li>Bathtub Replacement</li>
+                    <li>Smart Toilet Installation</li>
+                    <li>Custom Shower Systems</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Customer Reviews</h2>
+                <div class="mt-4">
+                    <div class="review-card">
+                        <div class="rating">★★★★★</div>
+                        <strong>Emma S.</strong>
+                        <p class="text-muted small">2 days ago</p>
+                        <p>Transformed our old bathroom into a spa! Attention to detail is amazing.</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button class="btn btn-outline">Write a Review</button>
+                </div>
+            </div>
+        </section>
+
+        <aside class="actions">
+            <div class="card mb-4">
+                <h3>Inquiry / Booking</h3>
+                <p class="text-muted mt-4">Consultation Fee</p>
+                <div class="price-tag">$50.00</div>
+
+                <form action="messages.html">
+                    <div class="form-group">
+                        <label>Select Service</label>
+                        <select>
+                            <option>Design Consultation ($50)</option>
+                            <option>Fixture Install ($120+)</option>
+                            <option>Full Remodel Quote (Free)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>Contact Info</h3>
+                <p class="mt-4">📞 1-800-BLUE-WAVE</p>
+                <p>📧 design@bluewaveplumbing.com</p>
+                <p>🕒 Mon-Fri: 10 AM - 5 PM</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

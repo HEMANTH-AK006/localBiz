@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Services - LocalBiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .search-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+
+        .filter-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 400;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .profile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .listing-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .listing-img {
+            width: 120px;
+            height: 120px;
+            background: #e2e8f0;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .listing-info {
+            flex-grow: 1;
+        }
+
+        .badge {
+            background: #f1f5f9;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-discount {
+            background: #dcfce7;
+            color: #166534;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">LocalBiz</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="search.html">Services</a>
+                <a href="forum.html">Community</a>
+                <a href="register.html" class="btn btn-outline">Register Business</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-layout">
+            <aside class="filters">
+                <h3>Filters</h3>
+                <hr class="mb-4 mt-4">
+
+                <div class="filter-section">
+                    <h4>Category</h4>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="carpentry">Carpentry</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="tutoring">Tutoring</option>
+                        <option value="home">Home Services</option>
+                    </select>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Price Range</h4>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" class="price-filter" value="1"> Economy ($)</label>
+                        <label><input type="checkbox" class="price-filter" value="2"> Mid-range ($$)</label>
+                        <label><input type="checkbox" class="price-filter" value="3"> Premium ($$$)</label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Min. Rating</h4>
+                    <div class="checkbox-group">
+                        <label><input type="radio" name="rating-filter" class="rating-filter" value="4.5"> 4.5 &
+                            Above</label>
+                        <label><input type="radio" name="rating-filter" class="rating-filter" value="4.0"> 4.0 &
+                            Above</label>
+                        <label><input type="radio" name="rating-filter" class="rating-filter" value="3.0"> 3.0 &
+                            Above</label>
+                        <label><input type="radio" name="rating-filter" class="rating-filter" value="0" checked> Any
+                            Rating</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%;" onclick="applyFilters()">Apply Filters</button>
+            </aside>
+
+            <section class="results">
+                <div class="card mb-4"
+                    style="height: 200px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                    <div style="font-weight: 700; color: #64748b; z-index: 1;">[ Interactive Map View - Nearby
+                        Businesses ]</div>
+                    <div
+                        style="position: absolute; top: 20%; left: 30%; width: 15px; height: 15px; background: red; border-radius: 50%; border: 2px solid white;">
+                    </div>
+                    <div
+                        style="position: absolute; top: 50%; left: 60%; width: 15px; height: 15px; background: blue; border-radius: 50%; border: 2px solid white;">
+                    </div>
+                    <div
+                        style="position: absolute; top: 70%; left: 20%; width: 15px; height: 15px; background: green; border-radius: 50%; border: 2px solid white;">
+                    </div>
+                </div>
+
+                <div class="mb-4" style="display: flex; justify-content: space-between; align-items: center;">
+
+
+                </div>
+
+                <div class="mb-4" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>Matching Services</h2>
+                    <span id="result-count" class="text-muted">Showing 27 results</span>
+                </div>
+
+                <div class="profile-list" id="listings">
+                    <!-- 5 Plumbing Profiles -->
+                    <div class="card listing-card" data-category="plumbing" data-price="3" data-rating="4.9">
+                        <div class="listing-img">🚰</div>
+                        <div class="listing-info">
+                            <span class="badge">Plumbing</span>
+                            <h3 class="mt-4">Elite Plumbing Solutions</h3>
+                            <div class="rating">★★★★★ (4.9)</div>
+                            <p class="text-muted mt-4">24/7 Emergency Repairs | Leak Detection</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="badge badge-discount mb-4">15% OFF</div>
+                            <a href="profile-p1.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="plumbing" data-price="1" data-rating="4.5">
+                        <div class="listing-img">🚰</div>
+                        <div class="listing-info">
+                            <span class="badge">Plumbing</span>
+                            <h3 class="mt-4">Quick Fix Plumbers</h3>
+                            <div class="rating">★★★★☆ (4.5)</div>
+                            <p class="text-muted mt-4">Fast response for home leaks</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-p2.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="plumbing" data-price="2" data-rating="5.0">
+                        <div class="listing-img">🚰</div>
+                        <div class="listing-info">
+                            <span class="badge">Plumbing</span>
+                            <h3 class="mt-4">Reliable Pipe Co.</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">30 years of quality service</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-p3.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="plumbing" data-price="2" data-rating="4.2">
+                        <div class="listing-img">🚰</div>
+                        <div class="listing-info">
+                            <span class="badge">Plumbing</span>
+                            <h3 class="mt-4">EcoPlumb</h3>
+                            <div class="rating">★★★★☆ (4.2)</div>
+                            <p class="text-muted mt-4">Eco-friendly water-saving tech</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-p4.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="plumbing" data-price="3" data-rating="4.8">
+                        <div class="listing-img">🚰</div>
+                        <div class="listing-info">
+                            <span class="badge">Plumbing</span>
+                            <h3 class="mt-4">City Master Plumbers</h3>
+                            <div class="rating">★★★★★ (4.8)</div>
+                            <p class="text-muted mt-4">Certified professionals</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-p5.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 7 Carpentry Profiles -->
+                    <div class="card listing-card" data-category="carpentry" data-price="3" data-rating="4.7">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Modern Woodworks</h3>
+                            <div class="rating">★★★★☆ (4.7)</div>
+                            <p class="text-muted mt-4">Custom Furniture | Restoration</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c1.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="2" data-rating="5.0">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Heritage Carpentry</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">Classic woodwork for homes</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c2.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="2" data-rating="4.3">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Urban Cabinets</h3>
+                            <div class="rating">★★★★☆ (4.3)</div>
+                            <p class="text-muted mt-4">Storage specialists</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c3.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="3" data-rating="4.9">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Fine Finish Carpentry</h3>
+                            <div class="rating">★★★★★ (4.9)</div>
+                            <p class="text-muted mt-4">Trim and finishing work</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c4.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="2" data-rating="4.6">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Deck & Patio Experts</h3>
+                            <div class="rating">★★★★☆ (4.6)</div>
+                            <p class="text-muted mt-4">Outdoor living specialists</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c5.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="3" data-rating="5.0">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Custom Carvings</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">Unique hand-carved art</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c6.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="carpentry" data-price="1" data-rating="4.0">
+                        <div class="listing-img">🪑</div>
+                        <div class="listing-info">
+                            <span class="badge">Carpentry</span>
+                            <h3 class="mt-4">Budget Woodwork</h3>
+                            <div class="rating">★★★★☆ (4.0)</div>
+                            <p class="text-muted mt-4">Affordable fixes</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-c7.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 5 Electrical Profiles -->
+                    <div class="card listing-card" data-category="electrical" data-price="2" data-rating="5.0">
+                        <div class="listing-img">⚡</div>
+                        <div class="listing-info">
+                            <span class="badge">Electrical</span>
+                            <h3 class="mt-4">VoltMaster Electrical</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">Certified Professionals | 24/7 Service</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-e1.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="electrical" data-price="2" data-rating="4.7">
+                        <div class="listing-img">⚡</div>
+                        <div class="listing-info">
+                            <span class="badge">Electrical</span>
+                            <h3 class="mt-4">PowerPulse Electrical</h3>
+                            <div class="rating">★★★★☆ (4.7)</div>
+                            <p class="text-muted mt-4">Fast & Reliable Residential Electricians</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-e2.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="electrical" data-price="3" data-rating="4.9">
+                        <div class="listing-img">⚡</div>
+                        <div class="listing-info">
+                            <span class="badge">Electrical</span>
+                            <h3 class="mt-4">WireGuard Experts</h3>
+                            <div class="rating">★★★★★ (4.9)</div>
+                            <p class="text-muted mt-4">Master Electricians | Safety Inspections</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-e3.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="electrical" data-price="1" data-rating="4.6">
+                        <div class="listing-img">⚡</div>
+                        <div class="listing-info">
+                            <span class="badge">Electrical</span>
+                            <h3 class="mt-4">BrightByte Services</h3>
+                            <div class="rating">★★★★☆ (4.6)</div>
+                            <p class="text-muted mt-4">Modern Lighting & Automation Specialists</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-e4.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="electrical" data-price="1" data-rating="4.3">
+                        <div class="listing-img">⚡</div>
+                        <div class="listing-info">
+                            <span class="badge">Electrical</span>
+                            <h3 class="mt-4">Current Solutions</h3>
+                            <div class="rating">★★★★☆ (4.3)</div>
+                            <p class="text-muted mt-4">Affordable Repair & Maintenance</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-e5.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 5 Tutoring Profiles -->
+                    <div class="card listing-card" data-category="tutoring" data-price="2" data-rating="4.9">
+                        <div class="listing-img">📚</div>
+                        <div class="listing-info">
+                            <span class="badge">Tutoring</span>
+                            <h3 class="mt-4">Academic Edge</h3>
+                            <div class="rating">★★★★★ (4.9)</div>
+                            <p class="text-muted mt-4">K-12 & College Tutoring | STEM Specialists</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-t1.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="tutoring" data-price="2" data-rating="5.0">
+                        <div class="listing-img">📚</div>
+                        <div class="listing-info">
+                            <span class="badge">Tutoring</span>
+                            <h3 class="mt-4">Math Masters</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">High School & College Mathematics Tutoring</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-t2.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="tutoring" data-price="1" data-rating="4.8">
+                        <div class="listing-img">📚</div>
+                        <div class="listing-info">
+                            <span class="badge">Tutoring</span>
+                            <h3 class="mt-4">Language Loft</h3>
+                            <div class="rating">★★★★☆ (4.8)</div>
+                            <p class="text-muted mt-4">English, Spanish & French for all ages</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-t3.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="tutoring" data-price="2" data-rating="4.9">
+                        <div class="listing-img">📚</div>
+                        <div class="listing-info">
+                            <span class="badge">Tutoring</span>
+                            <h3 class="mt-4">Science Squad</h3>
+                            <div class="rating">★★★★☆ (4.9)</div>
+                            <p class="text-muted mt-4">Biology, Chemistry & Physics Experts</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-t4.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="tutoring" data-price="3" data-rating="5.0">
+                        <div class="listing-img">📚</div>
+                        <div class="listing-info">
+                            <span class="badge">Tutoring</span>
+                            <h3 class="mt-4">Creative Keys</h3>
+                            <div class="rating">★★★★★ (5.0)</div>
+                            <p class="text-muted mt-4">Music, Arts & Coding Lessons</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-t5.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 5 Home Services Profiles -->
+                    <div class="card listing-card" data-category="home" data-price="2" data-rating="4.8">
+                        <div class="listing-img">🏠</div>
+                        <div class="listing-info">
+                            <span class="badge">Home Services</span>
+                            <h3 class="mt-4">Sparkle Home Services</h3>
+                            <div class="rating">★★★★★ (4.8)</div>
+                            <p class="text-muted mt-4">Premium Cleaning & Organization Specialists</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-h1.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="home" data-price="1" data-rating="4.5">
+                        <div class="listing-img">🏠</div>
+                        <div class="listing-info">
+                            <span class="badge">Home Services</span>
+                            <h3 class="mt-4">CleanSweep Pros</h3>
+                            <div class="rating">★★★★☆ (4.5)</div>
+                            <p class="text-muted mt-4">Standard & Deep Cleaning Experts</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-h2.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="home" data-price="1" data-rating="4.8">
+                        <div class="listing-img">🏠</div>
+                        <div class="listing-info">
+                            <span class="badge">Home Services</span>
+                            <h3 class="mt-4">Garden Glories</h3>
+                            <div class="rating">★★★★★ (4.8)</div>
+                            <p class="text-muted mt-4">Landscaping & Lawn Maintenance</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-h3.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="home" data-price="2" data-rating="4.9">
+                        <div class="listing-img">🏠</div>
+                        <div class="listing-info">
+                            <span class="badge">Home Services</span>
+                            <h3 class="mt-4">SafeSecure Home</h3>
+                            <div class="rating">★★★★★ (4.9)</div>
+                            <p class="text-muted mt-4">Security Solutions & Locksmith Services</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-h4.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card" data-category="home" data-price="2" data-rating="4.7">
+                        <div class="listing-img">🏠</div>
+                        <div class="listing-info">
+                            <span class="badge">Home Services</span>
+                            <h3 class="mt-4">PestAway Experts</h3>
+                            <div class="rating">★★★★☆ (4.7)</div>
+                            <p class="text-muted mt-4">Safe & Effective Pest Control</p>
+                        </div>
+                        <div class="text-center">
+                            <a href="profile-h5.html" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function applyFilters() {
+            const categorySelect = document.getElementById('category-filter');
+            const selectedCategory = categorySelect.value;
+
+            const priceCheckboxes = document.querySelectorAll('.price-filter:checked');
+            const selectedPrices = Array.from(priceCheckboxes).map(cb => cb.value);
+
+            const ratingRadio = document.querySelector('.rating-filter:checked');
+            const minRating = parseFloat(ratingRadio ? ratingRadio.value : 0);
+
+            const cards = document.querySelectorAll('.listing-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                const cardPrice = card.getAttribute('data-price');
+                const cardRating = parseFloat(card.getAttribute('data-rating'));
+
+                const categoryMatch = (selectedCategory === 'all' || cardCat === selectedCategory);
+                const priceMatch = (selectedPrices.length === 0 || selectedPrices.includes(cardPrice));
+                const ratingMatch = (cardRating >= minRating);
+
+                if (categoryMatch && priceMatch && ratingMatch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('result-count').innerText = `Showing ${visibleCount} results`;
+        }
+
+        // Run once on load to populate count
+        window.addEventListener('load', applyFilters);
+    </script>
+
+    <footer class="text-center mt-4 mb-4">
+        <p class="text-muted">&copy; 2026 LocalBiz Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
